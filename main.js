@@ -4,6 +4,17 @@ var baseMult = 1;
 var mult;
 let start;
 
+let baseMultMod = .5;
+let multMod = baseMultMod;
+
+let multModView = document.getElementById("modView")
+let multModRange = document.getElementById("modRange")
+
+function multUpdate(newMod) {
+	multMod = newMod;
+	document.getElementById("modView").innerHTML = multMod;
+}
+
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
@@ -14,7 +25,7 @@ function step(timeStamp) {
 
 	const elapsed = timeStamp - start;
 
-	mult = 1 + Math.sin(baseMult * elapsed / 1000) * .75;
+	mult = 1 + Math.sin(baseMult * elapsed / 1000) * multMod;
 
 	let mod = Math.sin(mult * Math.sin(baseRad * elapsed / 20000));
 	rad = Math.abs(mod) * 50
